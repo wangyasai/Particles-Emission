@@ -43,7 +43,6 @@ function mySetting() {
 };
 
 var options ={	
-  Background : [20,20,20],
   Color1 : [170,185,31],
 	Color2 : [0,151,136],
   Shadow : 0.5,
@@ -65,8 +64,8 @@ window.onload = function() {
 
   var folder1 = gui.addFolder('Controls');
 
-  var bgcolorControl = folder1.addColor(options,'Background');
-  bgcolorControl.onChange(draw);
+  // var bgcolorControl = folder1.addColor(options,'Background');
+  // bgcolorControl.onChange(draw);
 
   var color1Control = folder1.addColor(options, 'Color1');
   color1Control.onChange(draw);
