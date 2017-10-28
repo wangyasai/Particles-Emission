@@ -7,10 +7,7 @@ function setup() {
 
 function draw() {
 
-shadow='rgba('+options.Background[0]+','
-                   +options.Background[1]+','
-                   +options.Background[2]+','
-                   +(1-options.Shadow)+')';
+shadow='rgba(20,20,20,'+(1-options.Shadow)+')';
 background(shadow);
 
 noStroke();
