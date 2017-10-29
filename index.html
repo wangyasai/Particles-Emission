@@ -38,7 +38,7 @@
 </head>
 <body>
 
-<div id="credits"> Created by Yasai  |  <a href = "http://yasaisai.tumblr.com/archive" target="_blank" style="color: #939393;"> Tumblr Arhive </a> </div>
+<div id="credits"> Created by  <a href = "https://weibo.com/psaiaevegas/profile?rightmod=1&wvr=6&mod=personnumber" target="_blank" style="color: #939393;">Yasai</a>  |  <a href = "http://yasaisai.tumblr.com/archive" target="_blank" style="color: #939393;"> Tumblr Arhive </a> </div>
 
 <script type="text/javascript">
  
@@ -47,6 +47,7 @@ function mySetting() {
 };
 
 var options ={	
+  Background : [20,20,20],
   Color1 : [170,185,31],
 	Color2 : [0,151,136],
   Shadow : 0.5,
@@ -67,6 +68,9 @@ window.onload = function() {
   gui = new dat.GUI();
 
   var folder1 = gui.addFolder('Controls');
+
+  var bgcolorControl = folder1.addColor(options, 'Background');
+  bgcolorControl.onChange(draw);
 
   var color1Control = folder1.addColor(options, 'Color1');
   color1Control.onChange(draw);
@@ -101,7 +105,7 @@ window.onload = function() {
   var isXControl = folder1.add(options, 'FullScreen');
   isXControl.onChange(draw);
 
-  var shapeControl = folder1.add(options, 'Shape', ['Circle', 'Rect']);
+  var shapeControl = folder1.add(options, 'Shape', ['Circle', 'Rect','Line','Triangle'] );
   shapeControl.onChange(draw);
 
   folder1.open();

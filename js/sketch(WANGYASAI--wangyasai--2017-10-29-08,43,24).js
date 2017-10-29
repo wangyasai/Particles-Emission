@@ -56,24 +56,21 @@ for (var k = 0; k < options.Repeate; k++) {
                      rect(x, y, r, r); 
                   }else if(options.Shape == 'Line'){           
                      stroke(between);
-                     strokeWeight(r);
+                     strokeWeight(r/4);
                      noFill();
                      line(x, y, x-r, y-r); 
                   }else{
                      fill(between);
                      noStroke();
- beginShape();
+
+
+                var x = i * b * abs((cos(angle))/2 );
+                var y = j * b * abs((cos(angle))/2 );
+                     beginShape();
                      vertex(x,y);
-                     vertex(x-30,y-30);
-                     vertex(x+30,y+30);  
+                     vertex(x-r/2,y-r/2);
+                     vertex(x+r/2,y+r/2);  
                      endShape(CLOSE);
-                // var x = i * b * abs((cos(angle))/2 );
-                // var y = j * b * abs((cos(angle))/2 );
-                     // beginShape();
-                     // vertex(x,y);
-                     // vertex(x-r/2,y-r/2);
-                     // vertex(x+r/2,y+r/2);  
-                     // endShape(CLOSE);
                   }
             }
         }
