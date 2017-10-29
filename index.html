@@ -1,5 +1,4 @@
-﻿<!-- Hello, This is a simple particles emision tool that can generate different shapes through the consoles.
->>>>>>> c4531ad1161c6876031046d799f8e40697638bfb
+<!-- Hello, This is a simple particles emision tool that can generate different shapes through the consoles.
  If you want to save a picture of the moment, you can save the image directly. I hope you like this tool:) Created by Yasai-->
 
 
@@ -47,8 +46,9 @@ function mySetting() {
   this.FullScreen= false;   
 };
 
+
 var options ={	
-  Background : [20,20,20],
+  // Background : [20,20,20],
   Color1 : [170,185,31],
   Color2 : [0,151,136],
   Shadow : 0.5,
@@ -62,14 +62,13 @@ var options ={
   FullScreen : false,
   Shape : 'Circle',
 
-  Random: function () {
-          // options.Background = [random(0,255),random(0,255),random(0,255)];
+  Random: function () { 
           options.Color1 = [random(0,255),random(0,255),random(0,255)];
-          options.Color2 = [random(0,255),random(0,255),random(0,255)];
+          options.Color2 = [random(0,255),random(0,255),random(0,255)];    
           options.Shadow = random(0,0.5);
           options.Speed = random(1,6);
           options.Spacing = random(30,100);
-          options.Points = random(5,30);
+          options.Points = random(5,20);
           options.Repeate = random(4,20);
           options.Emission = random(1,10);
           options.maxSize = random(1,10);
@@ -90,8 +89,8 @@ window.onload = function() {
 
   var folder1 = gui.addFolder('Controls');
 
-  var bgcolorControl = folder1.addColor(options, 'Background');
-  bgcolorControl.onChange(draw);
+  // var bgcolorControl = folder1.addColor(options, 'Background');
+  // bgcolorControl.onChange(draw);
 
   var color1Control = folder1.addColor(options, 'Color1');
   color1Control.onChange(draw);
@@ -126,7 +125,7 @@ window.onload = function() {
   var FullScreenControl = folder1.add(options, 'FullScreen');
   FullScreenControl.onChange(draw);
 
-  var shapeControl = folder1.add(options, 'Shape', ['Circle', 'Rect','Line','Triangle'] );
+  var shapeControl = folder1.add(options, 'Shape', ['Circle', 'Rect','Line','Diamond'] );
   shapeControl.onChange(draw);
 
   var RandomControl = folder1.add(options, 'Random');
