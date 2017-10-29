@@ -1,4 +1,5 @@
 var shadow;
+var theata = 0;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -8,10 +9,6 @@ function setup() {
 function draw() {
 
 shadow='rgba(20,20,20,'+(1-options.Shadow)+')';
-// shadow ='rgba('+options.Background[0]+','
-//                +options.Background[1]+','
-//                +options.Background[2]+','
-//                +(1-options.Shadow)+')';
 
 background(shadow);
 
@@ -46,6 +43,8 @@ for (var k = 0; k < options.Repeate; k++) {
                 var x = i * b * abs((cos(angle))/2 );
                 var y = j * b * abs((cos(angle))/2 );
 
+                push();
+                rotate(radians(theata));
                 if(options.Shape  == 'Circle'){
                     fill(between);
                     noStroke();
@@ -58,7 +57,7 @@ for (var k = 0; k < options.Repeate; k++) {
                      stroke(between);
                      strokeWeight(r/10);
                      noFill();
-                     line(x, y, x-r, y-r); 
+                     line(x, y, x+r*sin(angle), y+r*sin(angle)); 
                   }else{
                      fill(between);
                      noStroke();
@@ -72,8 +71,14 @@ for (var k = 0; k < options.Repeate; k++) {
                      vertex(x+r/3*2,y-r/3); 
                      endShape(CLOSE);
                   }
+                  pop();
             }
         }
+
+        if(options.Rotate == true){
+         theata+=0.07;
+        }
+         
         rotate(TWO_PI / int(options.Repeate+0.1));
     }
 }
