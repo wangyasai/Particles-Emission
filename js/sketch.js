@@ -7,7 +7,11 @@ function setup() {
 
 function draw() {
 
-shadow='rgba(20,20,20,'+(1-options.Shadow)+')';
+// shadow='rgba(20,20,20,'+(1-options.Shadow)+')';
+shadow ='rgba('+options.Background[0]+','
+               +options.Background[1]+','
+               +options.Background[2]+','
+               +(1-options.Shadow)+')';
 background(shadow);
 
 noStroke();
@@ -34,20 +38,36 @@ for (var k = 0; k < options.Repeate; k++) {
 
                 var percent = norm(pow(j + i, 1.2), 0, options.Points);
 
-
                 from = color(options.Color1);
                 to = color(options.Color2);
                 between = lerpColor(from, to, percent);
-                fill(between);
+       
 
                 var x = i * b * abs((cos(angle))/2 );
                 var y = j * b * abs((cos(angle))/2 );
 
                 if(options.Shape  == 'Circle'){
+                    fill(between);
+                    noStroke();
                     ellipse(x, y, r, r);  
-                  }else if(options.Shape== 'Rect'){
+                  }else if(options.Shape == 'Rect'){
+                     fill(between);
+                     noStroke();
                      rect(x, y, r, r); 
-                }
+                  }else if(options.Shape == 'Line'){           
+                     stroke(between);
+                     strokeWeight(r);
+                     noFill();
+                     line(x, y, x-r, y-r); 
+                  }else{
+                     fill(between);
+                     noStroke();
+                    beginShape();
+                     vertex(x,y);
+                     vertex(x-30,y-30);
+                     vertex(x+30,y+30);  
+                     endShape(CLOSE);
+                  }
             }
         }
         rotate(TWO_PI / int(options.Repeate+0.1));
