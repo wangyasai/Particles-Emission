@@ -56,12 +56,17 @@ for (var k = 0; k < options.Repeate; k++) {
                      rect(x, y, r, r); 
                   }else if(options.Shape == 'Line'){           
                      stroke(between);
+<<<<<<< HEAD
                      strokeWeight(r/6);
+=======
+                     strokeWeight(r);
+>>>>>>> c4531ad1161c6876031046d799f8e40697638bfb
                      noFill();
                      line(x, y, x-r, y-r); 
                   }else{
                      fill(between);
                      noStroke();
+<<<<<<< HEAD
                      beginShape();
                      var x = (i+0.5) * b * abs((cos(angle))/2 );
                      var y = (j+0.5) * b * abs((cos(angle))/2 );
@@ -73,6 +78,14 @@ for (var k = 0; k < options.Repeate; k++) {
                      endShape(CLOSE);
                   }
       
+=======
+                    beginShape();
+                     vertex(x,y);
+                     vertex(x-30,y-30);
+                     vertex(x+30,y+30);  
+                     endShape(CLOSE);
+                  }
+>>>>>>> c4531ad1161c6876031046d799f8e40697638bfb
             }
         }
         rotate(TWO_PI / int(options.Repeate+0.1));
