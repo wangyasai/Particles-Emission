@@ -5,7 +5,6 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
 }
 
-
 function draw() {
 
 shadow='rgba(20,20,20,'+(1-options.Shadow)+')';
@@ -46,37 +45,57 @@ for (var k = 0; k < options.Repeate; k++) {
                 push();
                 rotate(radians(theata));
                 if(options.Shape  == 'Circle'){
+                    if(options.Repeate == 1){
+                        options.Repeate +=3;
+                    };
                     fill(between);
                     noStroke();
                     ellipse(x, y, r, r);  
                   }else if(options.Shape == 'Rect'){
+                    if(options.Repeate == 1){
+                        options.Repeate +=3;
+                    };
                      fill(between);
                      noStroke();
                      rect(x, y, r, r); 
-                  }else if(options.Shape == 'Line'){           
+                  }else if(options.Shape == 'Line'){        
+                   if(options.Repeate == 1){
+                        options.Repeate +=3;
+                    };   
                      stroke(between);
                      strokeWeight(r/10);
                      noFill();
                      line(x, y, x+r*sin(angle), y+r*sin(angle)); 
-                  }else{
+                  }else if (options.Shape == 'Diamond')  {
+                     if(options.Repeate == 1){
+                        options.Repeate +=3;
+                    };
                      fill(between);
                      noStroke();
                      beginShape();
                      var x = (i+0.5) * b * abs((cos(angle))/2 );
                      var y = (j+0.5) * b * abs((cos(angle))/2 );
-
                      vertex(x,y);
                      vertex(x+r/3,y-r/3*2);                   
                      vertex(x+r,y-r);   
                      vertex(x+r/3*2,y-r/3); 
                      endShape(CLOSE);
+                  }else{
+                    textSize(r);
+                    fill(between);
+                    options.Repeate = 1;
+                    var s = options.Text;
+                    text(s,x,y);
+                    text(s,-x,y);
+                    text(s,-x,-y);
+                    text(s,x,-y);
                   }
                   pop();
             }
         }
 
         if(options.Rotate == true){
-         theata+=0.07;
+         theata+=0.08;
         }
          
         rotate(TWO_PI / int(options.Repeate+0.1));
