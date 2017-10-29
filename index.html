@@ -58,6 +58,7 @@ var options ={
   FullScreen : false,
   Rotate: false,
   Shape : 'Circle',
+  Text : "★",
 
   Random: function () { 
           options.Color1 = [random(0,255),random(0,255),random(0,255)];
@@ -71,7 +72,7 @@ var options ={
           options.maxSize = random(1,10);
           options.minSize = random(0,5);         
           options.FullScreen = random(true,false);
-          options.Shape = random( ['Circle', 'Rect','Line','Triangle'] );
+          options.Shape = random( ['Circle', 'Rect','Line','Diamond','Text ★'] );
         },
 
   Save : function(){
@@ -111,10 +112,10 @@ window.onload = function() {
   EmissionControl.onChange(draw);
 
   var maxSizeControl = folder1.add(options, 'maxSize',1,30);
-   maxSizeControl.onChange(draw);
+  maxSizeControl.onChange(draw);
 
   var minSizeControl = folder1.add(options, 'minSize',0,30);
-   minSizeControl.onChange(draw);
+  minSizeControl.onChange(draw);
 
   var RepeateControl = folder1.add(options, 'Repeate',4,30);
   RepeateControl .onChange(draw);
@@ -125,8 +126,10 @@ window.onload = function() {
   var RotateControl = folder1.add(options, 'Rotate');
   RotateControl.onChange(draw);
 
-  var shapeControl = folder1.add(options, 'Shape', ['Circle', 'Rect','Line','Diamond'] );
+  var shapeControl = folder1.add(options, 'Shape',['Circle', 'Rect','Line','Diamond','Text ★']  );
   shapeControl.onChange(draw);
+
+  var textControl = folder1.add(options, 'Text');
 
   var RandomControl = folder1.add(options, 'Random');
   var SaveControl = folder1.add(options, 'Save');
