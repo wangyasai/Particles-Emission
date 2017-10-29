@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿<!-- Hello, This is a simple particles emision tool that can generate different shapes through the consoles.
+ If you want to save a picture of the moment, you can save the image directly. I hope you like this tool:) Created by Yasai-->
+
+
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -34,15 +38,20 @@
 </head>
 <body>
 
-<div id="credits"> Created by <a href = "https://weibo.com/2148509850/profile?topnav=1&wvr=6" target="_blank" style="color: #939393;">@Yasai </a> |  <a href = "http://yasaisai.tumblr.com/archive" target="_blank" style="color: #939393;"> Tumblr Arhive </a> </div>
+<div id="credits"> Created by  <a href = "https://weibo.com/psaiaevegas/profile?rightmod=1&wvr=6&mod=personnumber" target="_blank" style="color: #939393;">Yasai</a>  |  <a href = "http://yasaisai.tumblr.com/archive" target="_blank" style="color: #939393;"> Tumblr Arhive </a> </div>
 
 <script type="text/javascript">
  
 function mySetting() {
-  this.isFullScreen= false;       
+  this.FullScreen= false;   
+  // this.Random = funciton(){
+
+  // }    
 };
 
-var options ={	
+
+var options = {	
+  Background : [20,20,20],
   Color1 : [170,185,31],
 	Color2 : [0,151,136],
   Shadow : 0.5,
@@ -54,7 +63,27 @@ var options ={
   maxSize : 20,
   minSize:0,
   FullScreen : false,
-  Shape : 'Circle'
+  Shape : 'Circle',
+
+  Random: function () {
+          // options.Background = [random(0,255),random(0,255),random(0,255)];
+          options.Color1 = [random(0,255),random(0,255),random(0,255)];
+          options.Color2 = [random(0,255),random(0,255),random(0,255)];
+          options.Shadow = random(0,0.5);
+          options.Speed = random(1,6);
+          options.Spacing = random(30,100);
+          options.Points = random(5,30);
+          options.Repeate = random(4,20);
+          options.Emission = random(1,10);
+          options.maxSize = random(1,10);
+          options.minSize = random(0,5);
+          options.FullScreen = random(true,false);
+          options.Shape = random( ['Circle', 'Rect','Line','Triangle'] );
+        },
+
+  Save : function(){
+        saveFrames("Particles-Emission", "png", 1, 1);
+  },
 }
 
 
@@ -63,6 +92,9 @@ window.onload = function() {
   gui = new dat.GUI();
 
   var folder1 = gui.addFolder('Controls');
+
+  var bgcolorControl = folder1.addColor(options, 'Background');
+  bgcolorControl.onChange(draw);
 
   var color1Control = folder1.addColor(options, 'Color1');
   color1Control.onChange(draw);
@@ -91,14 +123,17 @@ window.onload = function() {
   var minSizeControl = folder1.add(options, 'minSize',0,30);
    minSizeControl.onChange(draw);
 
-  var repeateControl = folder1.add(options, 'Repeate',4,30);
-  repeateControl .onChange(draw);
+  var RepeateControl = folder1.add(options, 'Repeate',4,30);
+  RepeateControl .onChange(draw);
 
-  var isXControl = folder1.add(options, 'FullScreen');
-  isXControl.onChange(draw);
+  var FullScreenControl = folder1.add(options, 'FullScreen');
+  FullScreenControl.onChange(draw);
 
-  var shapeControl = folder1.add(options, 'Shape', ['Circle', 'Rect']);
+  var shapeControl = folder1.add(options, 'Shape', ['Circle', 'Rect','Line','Triangle'] );
   shapeControl.onChange(draw);
+
+  var RandomControl = folder1.add(options, 'Random');
+  var SaveControl = folder1.add(options, 'Save');
 
   folder1.open();
 };
