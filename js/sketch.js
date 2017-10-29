@@ -56,17 +56,13 @@ for (var k = 0; k < options.Repeate; k++) {
                      rect(x, y, r, r); 
                   }else if(options.Shape == 'Line'){           
                      stroke(between);
-
                      strokeWeight(r/6);
-
                      strokeWeight(r);
-
                      noFill();
                      line(x, y, x-r, y-r); 
                   }else{
                      fill(between);
                      noStroke();
-
                      beginShape();
                      var x = (i+0.5) * b * abs((cos(angle))/2 );
                      var y = (j+0.5) * b * abs((cos(angle))/2 );
