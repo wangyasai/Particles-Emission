@@ -1,5 +1,5 @@
-<!-- Hello, This is a simple particles emision tool that can generate different shapes through the consoles.
- If you want to save a picture of the moment, you can save the image directly. I hope you like this tool:) Created by Yasai-->
+<!-- Hello, This is a simple particles emision tool that can generate different shapes through the controls.
+ I hope you like this tool,have fuuuuuun:)-->
 
 
 <!DOCTYPE html>
@@ -41,10 +41,6 @@
 <div id="credits"> Created by  <a href = "https://weibo.com/psaiaevegas/profile?rightmod=1&wvr=6&mod=personnumber" target="_blank" style="color: #939393;">Yasai</a>  |  <a href = "http://yasaisai.tumblr.com/archive" target="_blank" style="color: #939393;"> Tumblr Arhive </a> </div>
 
 <script type="text/javascript">
- 
-function mySetting() {
-  this.FullScreen= false;   
-};
 
 
 var options ={	
@@ -60,19 +56,20 @@ var options ={
   maxSize : 20,
   minSize:0,
   FullScreen : false,
+  Rotate: false,
   Shape : 'Circle',
 
   Random: function () { 
           options.Color1 = [random(0,255),random(0,255),random(0,255)];
           options.Color2 = [random(0,255),random(0,255),random(0,255)];    
           options.Shadow = random(0,0.5);
-          options.Speed = random(1,6);
+          options.Speed = random(1,5);
           options.Spacing = random(30,100);
           options.Points = random(5,20);
-          options.Repeate = random(4,20);
+          options.Repeate = random(4,15);
           options.Emission = random(1,10);
           options.maxSize = random(1,10);
-          options.minSize = random(0,5);
+          options.minSize = random(0,5);         
           options.FullScreen = random(true,false);
           options.Shape = random( ['Circle', 'Rect','Line','Triangle'] );
         },
@@ -104,7 +101,7 @@ window.onload = function() {
   var speedControl = folder1.add(options, 'Speed',1,10);
   speedControl.onChange(draw);
 
-  var SpacingControl  = folder1.add(options, 'Spacing',0,100);
+  var SpacingControl  = folder1.add(options, 'Spacing',0,200);
   SpacingControl.onChange(draw);
 
   var PointsControl = folder1.add(options, 'Points',5,50);
@@ -124,6 +121,9 @@ window.onload = function() {
 
   var FullScreenControl = folder1.add(options, 'FullScreen');
   FullScreenControl.onChange(draw);
+
+  var RotateControl = folder1.add(options, 'Rotate');
+  RotateControl.onChange(draw);
 
   var shapeControl = folder1.add(options, 'Shape', ['Circle', 'Rect','Line','Diamond'] );
   shapeControl.onChange(draw);
