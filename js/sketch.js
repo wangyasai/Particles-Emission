@@ -62,7 +62,7 @@ for (var k = 0; k < options.Repeate; k++) {
                   }else{
                      fill(between);
                      noStroke();
- beginShape();
+                    beginShape();
                      vertex(x,y);
                      vertex(x-30,y-30);
                      vertex(x+30,y+30);  
