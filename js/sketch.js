@@ -7,14 +7,14 @@ function setup() {
 
 function draw() {
 
-// shadow='rgba(20,20,20,'+(1-options.Shadow)+')';
-shadow ='rgba('+options.Background[0]+','
-               +options.Background[1]+','
-               +options.Background[2]+','
-               +(1-options.Shadow)+')';
+shadow='rgba(20,20,20,'+(1-options.Shadow)+')';
+// shadow ='rgba('+options.Background[0]+','
+//                +options.Background[1]+','
+//                +options.Background[2]+','
+//                +(1-options.Shadow)+')';
+
 background(shadow);
 
-noStroke();
 translate(width / 2, height / 2);
 
 for (var k = 0; k < options.Repeate; k++) {
@@ -56,8 +56,7 @@ for (var k = 0; k < options.Repeate; k++) {
                      rect(x, y, r, r); 
                   }else if(options.Shape == 'Line'){           
                      stroke(between);
-                     strokeWeight(r/6);
-                     strokeWeight(r);
+                     strokeWeight(r/10);
                      noFill();
                      line(x, y, x-r, y-r); 
                   }else{
