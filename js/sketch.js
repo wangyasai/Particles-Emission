@@ -7,7 +7,6 @@ var img;
 function setup() {
     myCanvas = createCanvas(windowWidth, windowHeight);
     background(20,20,20);
-
 }
 
 
