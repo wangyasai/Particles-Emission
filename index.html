@@ -13,9 +13,9 @@
 <link href="" rel="stylesheet">
 
  <!--网页标题左侧显示-->
-<link rel="icon" href="/image/1.ico" type="image/x-icon">
+<link rel="icon" href="image/1.ico" type="image/x-icon">
 <!--收藏夹显示图标-->
-<link rel="shortcut icon" href="/image/1.ico" type="image/x-icon">
+<link rel="shortcut icon" href="image/1.ico" type="image/x-icon">
 
 <script type="text/javascript" src="js/dat.gui.min.js"></script>
 <script type="text/javascript" src="js/p5.min.js"></script>
@@ -54,7 +54,7 @@
 .progress-bar{
   height: 3px;
   width: 0%;
-  background-color: red;
+  background-color: #e61d5f;
 }
 .save-gif-tip{
   display: none;
@@ -69,7 +69,7 @@
 
 <div id="credits"> Created by  <a href = "https://weibo.com/psaiaevegas/profile?rightmod=1&wvr=6&mod=personnumber" target="_blank" style="color: #939393;">Yasai</a>  |  <a href = "http://yasaisai.tumblr.com/archive" target="_blank" style="color: #939393;"> Tumblr Arhive </a> </div>
 <div class="progress-box">
-  <p class="save-gif-tip">Gif is saving,just a moment please:)</p>
+  <p class="save-gif-tip">(｀・ω・´) Gif is saving , wait a moment </p>
   <p class="progress-bar"></p>
 </div>
 <script type="text/javascript">
@@ -122,6 +122,7 @@ var options ={
           options.Color2 = [options.Color1[0]+100,options.Color1[1]+100,options.Color1[2]+100];    
           options.Speed = random(1,5);
           options.Spacing = random(30,100);
+          options.Shadow = random(0,0,6);
           options.Points = random(5,20);
           options.Repeate = random(4,15);
           options.Emission = random(1,10);
