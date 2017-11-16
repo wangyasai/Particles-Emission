@@ -64,7 +64,7 @@
 
 <div id="credits"> Created by  <a href = "https://weibo.com/psaiaevegas/profile?rightmod=1&wvr=6&mod=personnumber" target="_blank" style="color: #939393;">Yasai</a>  |  <a href = "http://yasaisai.tumblr.com/archive" target="_blank" style="color: #939393;"> Tumblr Arhive </a> </div>
 <div class="progress-box">
-  <p class="save-gif-tip">Gif生成中....</p>
+  <p class="save-gif-tip">Gif is saving,just a moment please:)</p>
   <p class="progress-bar"></p>
 </div>
 <script type="text/javascript">
@@ -114,14 +114,14 @@ var options ={
 
   Random: function () { 
           options.Color1 = [random(0,255),random(0,255),random(0,255)];
-          options.Color2 = [random(0,255),random(0,255),random(0,255)];    
+          options.Color2 = [options.Color1[0]+100,options.Color1[1]+100,options.Color1[2]+100];    
           options.Speed = random(1,5);
           options.Spacing = random(30,100);
           options.Points = random(5,20);
           options.Repeate = random(4,15);
           options.Emission = random(1,10);
           options.maxSize = random(1,20);
-          options.minSize = random(1,20);         
+          options.minSize = random(1,5);         
           options.FullScreen = random(true,false);
           options.Shape = random( ['Circle', 'Rect','Line','Diamond','Text'] );
         },
@@ -241,8 +241,8 @@ window.onload = function() {
 
 
   folder1.open();
-  folder2.open();
-  folder3.open();
+  // folder2.open();
+  // folder3.open();
 };
 
 var gif = new GIF({
@@ -289,6 +289,16 @@ function finishGif(){
 
   gif.render();
 }
+
+
+
+
+
+
+
+
+
+
 
 
 </script>
