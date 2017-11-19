@@ -6,7 +6,7 @@ img.loadPixels();
 
 function setup() {
     myCanvas = createCanvas(windowWidth, windowHeight);
-    background(20,20,20);
+    background(10,10,10);
 }
 
 
@@ -20,7 +20,7 @@ function draw() {
 
 
 function drawParticles(){
-shadow='rgba(20,20,20,'+(1-options.Shadow)+')';
+shadow='rgba(10,10,10,'+(1-options.Shadow)+')';
 
 
 background(shadow);
