@@ -2,11 +2,13 @@ var shadow;
 var theata = 0;
 var myCanvas;
 var img;
+img.loadPixels();
 
 function setup() {
     myCanvas = createCanvas(windowWidth, windowHeight);
     background(20,20,20);
 }
+
 
 function p5LoadImage(dataURL){
     img = loadImage(dataURL);
@@ -19,10 +21,7 @@ function draw() {
 
 function drawParticles(){
 shadow='rgba(20,20,20,'+(1-options.Shadow)+')';
-// shadow ='rgba('+options.Background[0]+','
-//                +options.Background[1]+','
-//                +options.Background[2]+','
-//                +(1-options.Shadow)+')';
+
 
 background(shadow);
 
@@ -42,7 +41,7 @@ for (var k = 0; k < options.Repeate; k++) {
 
                 var b = (options.Spacing);
 
-                var scale = map(options.Points,5,50,400,1200);
+                var scale = map(options.Points,5,50,400,1000);
                 var r = map(dist(i * b, j * b, 0, 0), 0, scale,options.maxSize, options.minSize);
 
 
@@ -66,10 +65,12 @@ for (var k = 0; k < options.Repeate; k++) {
                 rotate(radians(theata));
 
                 if(type == 'image'){
-                    if(options.Repeate == 1){
-                        options.Repeate +=3;
-                    }
-                    image(img,x,y);
+                    options.Repeate = 1;
+                    r = map(dist(i * b, j * b, 0, 0), 0, scale,options.maxSize, options.minSize);
+                    image(img,x,y,r,r);
+                    image(img,-x,y,r,r);
+                    image(img,-x,-y,r,r);
+                    image(img,x,-y,r,r);
                 }
                 else if(type =='text'){
                     textSize(r);
@@ -140,8 +141,3 @@ for (var k = 0; k < options.Repeate; k++) {
         rotate(TWO_PI / int(options.Repeate+0.1));
     }
 }
-
-
-
-
-
