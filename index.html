@@ -86,8 +86,10 @@
 var type;
 var options ={  
   // Background : [20,20,20],
-  Color1 : [170,185,31],
-  Color2 : [0,151,136],
+  // Color1 : [170,185,31],
+  // Color2 : [0,151,136],
+  Color1: '#aab91f',
+  Color2: '#009788',
   Shadow : 0.5,
   Speed : 3,
   Spacing : 70,
@@ -116,9 +118,6 @@ var options ={
             }
             r.readAsDataURL(file);
 
-            //gui['Image_DataURL'] = file.name;
-            //update all controllers
-
             for (var i in gui.__controllers) {
                 gui.__controllers[i].updateDisplay();
             }
@@ -131,7 +130,7 @@ var options ={
           options.Color2 = [options.Color1[0]+100,options.Color1[1]+100,options.Color1[2]+100];    
           options.Speed = random(1,5);
           options.Spacing = random(30,100);
-          options.Shadow = random(0,0,6);
+          options.Shadow = random(0,0.6);
           options.Points = random(5,20);
           options.Repeate = random(4,15);
           options.Emission = random(1,10);
@@ -139,7 +138,16 @@ var options ={
           options.minSize = random(1,5);         
           options.FullScreen = random(true,false);
           options.Shape = random( ['Circle', 'Rect','Line','Diamond','Text'] );
+
+
+          var color1 = rgbToHex(Math.floor(options.Color1[0]),Math.floor(options.Color1[1]),Math.floor(options.Color1[2]));
+          color1Control.setValue(color1);
+
+          var color2 = rgbToHex(Math.floor(options.Color2[0]),Math.floor(options.Color2[1]),Math.floor(options.Color2[2]));
+          color2Control.setValue(color2);
+
         },
+
 
   isPNG: false,
   
@@ -161,52 +169,59 @@ var GuiConfig = function() {
 
 
 
-var text, gui, config;
+var text, gui, config,color1Control,color2Control,alphaControl,speedControl,SpacingControl,EmissionControl,maxSizeControl,minSizeControl,RepeateControl,RotateControl;
 window.onload = function() {
   gui = new dat.GUI();
 
   //folder1
   var folder1 = gui.addFolder('Controls');
 
-  // var bgcolorControl = folder1.addColor(options, 'Background');
-  // bgcolorControl.onChange(draw);
-
-  var color1Control = folder1.addColor(options, 'Color1');
+  color1Control = folder1.addColor(options, 'Color1');
   color1Control.onChange(draw);
 
-  var color2Control = folder1.addColor(options, 'Color2');
+  color2Control = folder1.addColor(options, 'Color2');
   color2Control.onChange(draw);
 
-  var alphaControl = folder1.add(options, 'Shadow',0,0.8);
+  alphaControl = folder1.add(options, 'Shadow',0,0.8);
   alphaControl.onChange(draw);
+  alphaControl.listen();
 
-  var speedControl = folder1.add(options, 'Speed',1,10);
+  speedControl = folder1.add(options, 'Speed',1,10);
   speedControl.onChange(draw);
+  speedControl.listen();
 
-  var SpacingControl  = folder1.add(options, 'Spacing',0,200);
+  SpacingControl  = folder1.add(options, 'Spacing',0,200);
   SpacingControl.onChange(draw);
+  SpacingControl.listen();
 
-  var PointsControl = folder1.add(options, 'Points',5,50);
+  PointsControl = folder1.add(options, 'Points',5,50);
   PointsControl.onChange(draw);
+  PointsControl.listen();
 
-  var EmissionControl = folder1.add(options, 'Emission',1,20);
+  EmissionControl = folder1.add(options, 'Emission',1,20);
   EmissionControl.onChange(draw);
+  EmissionControl.listen();
 
-  var maxSizeControl = folder1.add(options, 'maxSize',1,100);
+  maxSizeControl = folder1.add(options, 'maxSize',1,100);
   maxSizeControl.onChange(draw);
+  maxSizeControl.listen();
 
-  var minSizeControl = folder1.add(options, 'minSize',0,100);
+  minSizeControl = folder1.add(options, 'minSize',0,100);
   minSizeControl.onChange(draw);
+  minSizeControl.listen();
 
-  var RepeateControl = folder1.add(options, 'Repeate',4,30);
-  RepeateControl .onChange(draw);
+  RepeateControl = folder1.add(options, 'Repeate',4,30);
+  RepeateControl.onChange(draw);
+  RepeateControl.listen();
 
-  var FullScreenControl = folder1.add(options, 'FullScreen');
+  FullScreenControl = folder1.add(options, 'FullScreen');
   FullScreenControl.onChange(draw);
+  FullScreenControl.listen();
 
-  var RotateControl = folder1.add(options, 'Rotate');
+  RotateControl = folder1.add(options, 'Rotate');
   RotateControl.onChange(draw);
-
+  RotateControl.listen();
+  
   var RandomControl = folder1.add(options, 'Random');
 
   //folder2
@@ -256,8 +271,6 @@ window.onload = function() {
 
 
   folder1.open();
-  // folder2.open();
-  // folder3.open();
 };
 
 var gif = new GIF({
@@ -281,8 +294,6 @@ function createGif(){
 function addFrame(){
   gif.addFrame(canvas,{delay:delay});
 
-
-
   startFrame++;
   progressBar.style.width = 100*(startFrame/needFrames)+'%';
   if(startFrame>=needFrames){
@@ -304,6 +315,17 @@ function finishGif(){
   });
 
   gif.render();
+}
+
+
+//rgb to hex颜色转换
+function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }
 
 
