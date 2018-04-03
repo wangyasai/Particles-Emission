@@ -2,7 +2,6 @@ var shadow;
 var theata = 0;
 var myCanvas;
 var img;
-img.loadPixels();
 
 function setup() {
     myCanvas = createCanvas(windowWidth, windowHeight);
