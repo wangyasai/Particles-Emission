@@ -2,92 +2,100 @@
  I hope you like this tool,have fuuuuuun:)-->
 
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Particles Emission</title>
-<meta name="description" content="">
-<meta name="keywords" content="">
-<link href="" rel="stylesheet">
+ <!DOCTYPE html>
+ <html>
+ <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Particles Emission</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <link href="" rel="stylesheet">
 
- <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109829527-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109829527-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'UA-109829527-1');
-</script>
- 
- 
-<link rel="icon" href="image/1.ico" type="image/x-icon">
-<link rel="shortcut icon" href="image/1.ico" type="image/x-icon">
-
-<script type="text/javascript" src="js/dat.gui.min.js"></script>
-<script type="text/javascript" src="js/p5.min.js"></script>
-<script type="text/javascript" src="js/gif.js"></script>
-<script type="text/javascript" src="js/p5.dom.min.js"></script>
+    gtag('config', 'UA-109829527-1');
+  </script>
 
 
-<input id="img-path" type="file" />
+  <link rel="icon" href="image/1.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="image/1.ico" type="image/x-icon">
 
-<style type="text/css">
+  <script type="text/javascript" src="js/dat.gui.min.js"></script>
+  <script type="text/javascript" src="js/p5.min.js"></script>
+  <script type="text/javascript" src="js/gif.js"></script>
+  <script type="text/javascript" src="js/p5.dom.min.js"></script>
+
+
+  <input id="img-path" type="file" />
+
+  <style type="text/css">
   *{
     margin:0;
     padding:0;
   }
 
-#credits {
-  font-size: 12px;
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
-  opacity: 0.8;
-  color: #939393;
-  max-width: 70%;
-  text-align: right;
-}
+  #credits {
+    font-size: 12px;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    opacity: 0.8;
+    color: #939393;
+    max-width: 70%;
+    text-align: right;
+  }
 
-#img-path {
+  #img-path {
     display: none;
-}
-.progress-box{
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-}
-.progress-bar{
-  height: 3px;
-  width: 0%;
-  background-color: #e61d5f;
-}
-.save-gif-tip{
-  display: none;
-  margin-bottom: 5px;
-  text-align: center;
-  font-size: 16px;
-  color: white;
-}
+  }
+  .progress-box{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+  .progress-bar{
+    height: 3px;
+    width: 0%;
+    background-color: #e61d5f;
+  }
+  .save-gif-tip{
+    display: none;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+  }
 </style>
 </head>
 <body>
 
-<div id="credits"> Created by  <a href = "https://weibo.com/psaiaevegas/profile?rightmod=1&wvr=6&mod=personnumber" target="_blank" style="color: #939393;">@亚赛大人</a>  |  <a href = "https://www.instagram.com/yasaisai/" target="_blank" style="color: #939393;"> Instagram </a> </div>
+ <div id="credits"> 
+  <div class ="iconlink"> 
+    <div class = "socaial">
+      <span><a class="icon-weibo" href="https://weibo.com/psaiaevegas/profile?rightmod=1&wvr=6&mod=personnumber"  target="_blank"  data-icon="&#xe906;" ></a></span>
+      <span><a class="icon-zhihu" href="https://www.zhihu.com/people/wang-ya-sai/activities"  target="_blank"  data-icon="&#xe907;"></a></span>
+      <span><a class="icon-instagram" href="http://instagram.com/yasaisai"  target="_blank"  data-icon="&#xe903;"></a></span>
+      <span><a class="icon-twitter" href="https://twitter.com/yasai_wang"  target="_blank"  data-icon="&#xe905;"></a></span>
+    </div>
+    <div class = "socaial" style="color:#FFFFFF;font-size: 10pt; margin-right:10px;margin-top: -180px">Created by @yasai </div>
+  </div>
+</div>
+
 <div class="progress-box">
   <p class="save-gif-tip">(｀・ω・´) Gif is saving , please wait a moment </p>
   <p class="progress-bar"></p>
 </div>
 <script type="text/javascript">
 
-var type;
-var options ={  
-  // Background : [20,20,20],
-  // Color1 : [170,185,31],
-  // Color2 : [0,151,136],
+  var type;
+  var options ={  
   Color1: '#aab91f',
   Color2: '#009788',
   Shadow : 0.5,
@@ -108,56 +116,56 @@ var options ={
 
         var input = document.getElementById('img-path');
         input.addEventListener('change', function() {
-            var file = input.files[0];
-            r = new FileReader();
-            r.onload = function (){
-             gui['Image_DataURL'] = r.result;
-             p5LoadImage(r.result);
-             type='image';
-             draw();
-            }
-            r.readAsDataURL(file);
+          var file = input.files[0];
+          r = new FileReader();
+          r.onload = function (){
+           gui['Image_DataURL'] = r.result;
+           p5LoadImage(r.result);
+           type='image';
+           draw();
+         }
+         r.readAsDataURL(file);
 
-            for (var i in gui.__controllers) {
-                gui.__controllers[i].updateDisplay();
-            }
-        });
+         for (var i in gui.__controllers) {
+          gui.__controllers[i].updateDisplay();
+        }
+      });
         input.click();
-  },
+      },
 
-  Random: function () { 
-          options.Color1 = [random(0,255),random(0,255),random(0,255)];
-          options.Color2 = [options.Color1[0]+100,options.Color1[1]+100,options.Color1[2]+100];    
-          options.Speed = random(1,5);
-          options.Spacing = random(30,100);
-          options.Shadow = random(0,0.6);
-          options.Points = random(5,20);
-          options.Repeate = random(4,15);
-          options.Emission = random(1,10);
-          options.maxSize = random(1,20);
-          options.minSize = random(1,5);         
-          options.FullScreen = random(true,false);
-          options.Shape = random( ['Circle', 'Rect','Line','Diamond','Text'] );
-
-
-          var color1 = rgbToHex(Math.floor(options.Color1[0]),Math.floor(options.Color1[1]),Math.floor(options.Color1[2]));
-          color1Control.setValue(color1);
-
-          var color2 = rgbToHex(Math.floor(options.Color2[0]),Math.floor(options.Color2[1]),Math.floor(options.Color2[2]));
-          color2Control.setValue(color2);
-
-        },
+      Random: function () { 
+        options.Color1 = [random(0,255),random(0,255),random(0,255)];
+        options.Color2 = [options.Color1[0]+100,options.Color1[1]+100,options.Color1[2]+100];    
+        options.Speed = random(1,5);
+        options.Spacing = random(30,100);
+        options.Shadow = random(0,0.6);
+        options.Points = random(5,20);
+        options.Repeate = random(4,15);
+        options.Emission = random(1,10);
+        options.maxSize = random(1,20);
+        options.minSize = random(1,5);         
+        options.FullScreen = random(true,false);
+        options.Shape = random( ['Circle', 'Rect','Line','Diamond','Text'] );
 
 
-  isPNG: false,
-  
-  Save : function(){
-    saveFrames("Particles-Emission", "png", 1, 1);
-  },
-  SaveGif : function(){
-    createGif();
-  }
-}
+        var color1 = rgbToHex(Math.floor(options.Color1[0]),Math.floor(options.Color1[1]),Math.floor(options.Color1[2]));
+        color1Control.setValue(color1);
+
+        var color2 = rgbToHex(Math.floor(options.Color2[0]),Math.floor(options.Color2[1]),Math.floor(options.Color2[2]));
+        color2Control.setValue(color2);
+
+      },
+
+
+      isPNG: false,
+
+      Save : function(){
+        saveFrames("Particles-Emission", "png", 1, 1);
+      },
+      SaveGif : function(){
+        createGif();
+      }
+    }
 
 
 //upload icon
@@ -165,13 +173,13 @@ var GuiConfig = function() {
     this['Image Path'] = 'graphic.png';  // default image path
     this['Upload Image'] = function() {
     };
-};
+  };
 
 
 
-var text, gui, config,color1Control,color2Control,alphaControl,speedControl,SpacingControl,EmissionControl,maxSizeControl,minSizeControl,RepeateControl,RotateControl;
-window.onload = function() {
-  gui = new dat.GUI();
+  var text, gui, config,color1Control,color2Control,alphaControl,speedControl,SpacingControl,EmissionControl,maxSizeControl,minSizeControl,RepeateControl,RotateControl;
+  window.onload = function() {
+    gui = new dat.GUI();
 
   //folder1
   var folder1 = gui.addFolder('Controls');
@@ -280,10 +288,10 @@ var gif = new GIF({
 });
 
 var canvas = document.getElementById('defaultCanvas0'),
-  t, needFrames = 28, startFrame=0, delay=150,
-    
-  progressBar = document.querySelector('.progress-bar'),
-  progressTip = document.querySelector('.save-gif-tip');
+t, needFrames = 28, startFrame=0, delay=150,
+
+progressBar = document.querySelector('.progress-bar'),
+progressTip = document.querySelector('.save-gif-tip');
 
 function createGif(){
 
@@ -320,12 +328,12 @@ function finishGif(){
 
 //rgb to hex颜色转换
 function componentToHex(c) {
-    var hex = c.toString(16);
-    return hex.length == 1 ? "0" + hex : hex;
+  var hex = c.toString(16);
+  return hex.length == 1 ? "0" + hex : hex;
 }
 
 function rgbToHex(r, g, b) {
-    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }
 
 
