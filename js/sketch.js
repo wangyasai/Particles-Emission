@@ -17,12 +17,21 @@ function draw() {
     drawParticles();
 }
 
+function hexToRgb(hex) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+} : null;
+}
+
 
 function drawParticles(){
-shadow='rgba(10,10,10,'+(1-options.Shadow)+')';
+// shadow='rgba(10,10,10,'+(1-options.Shadow)+')';
 
-
-background(shadow);
+var rgb = hexToRgb(options.BgColor);
+background(rgb.r,rgb.g,rgb.b,(255-options.Shadow));
 
 if(options.isPNG == true){
     clear();
@@ -35,13 +44,13 @@ for (var k = 0; k < options.Repeate; k++) {
         for (var i = 0; i < options.Points; i++) {
             for (var j = 0; j < options.Points; j++) {
 
-                var ratio = dist(i, j, 0, 0) /options.Emission;
+                var ratio = dist(i, j, 0, 0) /10;
                 var angle = sin(millis() / 2000 * options.Speed + ratio * (PI/2));
 
                 var b = (options.Spacing);
 
                 var scale = map(options.Points,5,50,400,1000);
-                var r = map(dist(i * b, j * b, 0, 0), 0, scale,options.maxSize, options.minSize);
+                var r = map(dist(i * b, j * b, 0, 0), 0, scale,options.Size,0);
 
 
                 if(options.FullScreen == false){
@@ -65,7 +74,7 @@ for (var k = 0; k < options.Repeate; k++) {
 
                 if(type == 'image'){
                     options.Repeate = 1;
-                    r = map(dist(i * b, j * b, 0, 0), 0, scale,options.maxSize, options.minSize);
+                    r = map(dist(i * b, j * b, 0, 0), 0, scale,options.Size,0);
                     image(img,x,y,r,r);
                     image(img,-x,y,r,r);
                     image(img,-x,-y,r,r);

@@ -111,6 +111,7 @@
 
   var type;
   var options ={  
+    BgColor: '#0A0A0A',
     Color1: '#aab91f',
     Color2: '#009788',
     Shadow : 0.5,
@@ -118,9 +119,7 @@
     Spacing : 70,
     Points : 15,
     Repeate : 4,
-    Emission : 10,
-    maxSize : 20,
-    minSize:0,
+    Size : 20,
     FullScreen : false,
     Rotate: false,
     Shape : 'Circle',
@@ -149,24 +148,35 @@
       },
 
       Random: function () { 
-        options.Color1 = [random(0,255),random(0,255),random(0,255)];
-        options.Color2 = [options.Color1[0]+100,options.Color1[1]+100,options.Color1[2]+100];    
-        options.Speed = random(1,5);
-        options.Spacing = random(30,100);
-        options.Shadow = random(0,0.6);
-        options.Points = random(5,20);
-        options.Repeate = random(4,15);
-        options.Emission = random(1,10);
-        options.maxSize = random(1,20);
-        options.minSize = random(1,5);         
-        options.FullScreen = random(true,false);
-        options.Shape = random( ['Circle', 'Rect','Line','Diamond','Text'] );
+        var Speed = random(1,5);
+        SpeedControl.setValue(Speed);
+
+        var Spacing = random(30,100);
+        SpacingControl.setValue(Spacing);
+
+        var Shadow = random(0,0.6);
+        alphaControl.setValue(Shadow);
+
+        var Points = random(5,20);
+        PointsControl.setValue(Points);
+
+        var Repeate = random(4,15);
+        RepeateControl.setValue(Repeate);
 
 
-        var color1 = rgbToHex(Math.floor(options.Color1[0]),Math.floor(options.Color1[1]),Math.floor(options.Color1[2]));
+        var Size = random(1,20);      
+        SizeControl.setValue(Size); 
+
+        var fullScreen = random([true,false]);
+        FullScreenControl.setValue(fullScreen);
+
+        Shape = random( ['Circle', 'Rect','Line','Diamond','Text'] );
+        ShapeControl.setValue(Shape);
+
+        var color1 =  random(['#E632A5', '#580AFF','#005CFF','#aab91f']);
         color1Control.setValue(color1);
 
-        var color2 = rgbToHex(Math.floor(options.Color2[0]),Math.floor(options.Color2[1]),Math.floor(options.Color2[2]));
+        var color2 =  random(['#E632A5', '#580AFF','#005CFF','#009788']);
         color2Control.setValue(color2);
 
       },
@@ -191,12 +201,14 @@ var GuiConfig = function() {
   };
 
 
-  var text, gui, config,color1Control,color2Control,alphaControl,speedControl,SpacingControl,EmissionControl,maxSizeControl,minSizeControl,RepeateControl,RotateControl;
+  var text, gui, config,BgColorControl,color1Control,color2Control,alphaControl,SpeedControl,SpacingControl,EmissionControl,SizeControl,RepeateControl,RotateControl,ShapeControl ;
   window.onload = function() {
     gui = new dat.GUI();
 
   //folder1
-  var folder1 = gui.addFolder('Controls');
+    var folder1 = gui.addFolder('Controls');
+ BgColorControl = folder1.addColor(options, 'BgColor');
+ BgColorControl.onChange(draw);
 
   color1Control = folder1.addColor(options, 'Color1');
   color1Control.onChange(draw);
@@ -206,53 +218,44 @@ var GuiConfig = function() {
 
   alphaControl = folder1.add(options, 'Shadow',0,0.8);
   alphaControl.onChange(draw);
-  alphaControl.listen();
 
-  speedControl = folder1.add(options, 'Speed',1,10);
-  speedControl.onChange(draw);
-  speedControl.listen();
+  SpeedControl = folder1.add(options, 'Speed',1,10);
+  SpeedControl.onChange(draw);
+
 
   SpacingControl  = folder1.add(options, 'Spacing',0,200);
   SpacingControl.onChange(draw);
-  SpacingControl.listen();
 
   PointsControl = folder1.add(options, 'Points',5,50);
   PointsControl.onChange(draw);
-  PointsControl.listen();
-
-  EmissionControl = folder1.add(options, 'Emission',1,20);
-  EmissionControl.onChange(draw);
-  EmissionControl.listen();
-
-  maxSizeControl = folder1.add(options, 'maxSize',1,100);
-  maxSizeControl.onChange(draw);
-  maxSizeControl.listen();
-
-  minSizeControl = folder1.add(options, 'minSize',0,100);
-  minSizeControl.onChange(draw);
-  minSizeControl.listen();
 
   RepeateControl = folder1.add(options, 'Repeate',4,30);
   RepeateControl.onChange(draw);
-  RepeateControl.listen();
+
+  SizeControl = folder1.add(options, 'Size',1,40);
+  SizeControl.onChange(draw);
+
+
+
+
 
   FullScreenControl = folder1.add(options, 'FullScreen');
   FullScreenControl.onChange(draw);
-  FullScreenControl.listen();
+
 
   RotateControl = folder1.add(options, 'Rotate');
   RotateControl.onChange(draw);
-  RotateControl.listen();
+
   
   var RandomControl = folder1.add(options, 'Random');
 
   //folder2
   var folder2 = gui.addFolder('Shape');
 
-  var shapeControl = folder2.add(options, 'Shape', ['Circle', 'Rectangle','Line','Diamond'] );
+  ShapeControl = folder2.add(options, 'Shape', ['Circle', 'Rectangle','Line','Diamond'] );
 
   
-  shapeControl.onChange(function(){
+  ShapeControl.onChange(function(){
     if(options.Shape == 'Circle'){
       type = 'Circle';  
       draw();
