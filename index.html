@@ -114,7 +114,7 @@
     BgColor: '#0A0A0A',
     Color1: '#aab91f',
     Color2: '#009788',
-    Shadow : 0.5,
+    Shadow : 220,
     Speed : 3,
     Spacing : 70,
     Points : 15,
@@ -154,8 +154,8 @@
         var Spacing = random(30,100);
         SpacingControl.setValue(Spacing);
 
-        var Shadow = random(0,0.6);
-        alphaControl.setValue(Shadow);
+        var Shadow = random(0,255);
+        ShadowControl.setValue(Shadow);
 
         var Points = random(5,20);
         PointsControl.setValue(Points);
@@ -201,7 +201,7 @@ var GuiConfig = function() {
   };
 
 
-  var text, gui, config,BgColorControl,color1Control,color2Control,alphaControl,SpeedControl,SpacingControl,EmissionControl,SizeControl,RepeateControl,RotateControl,ShapeControl ;
+  var text, gui, config,BgColorControl,color1Control,color2Control,alphaControl,SpeedControl,SpacingControl,EmissionControl,SizeControl,RepeateControl,RotateControl,ShapeControl,ShadowControl ;
   window.onload = function() {
     gui = new dat.GUI();
 
@@ -216,8 +216,8 @@ var GuiConfig = function() {
   color2Control = folder1.addColor(options, 'Color2');
   color2Control.onChange(draw);
 
-  alphaControl = folder1.add(options, 'Shadow',0,0.8);
-  alphaControl.onChange(draw);
+  ShadowControl = folder1.add(options, 'Shadow',0,255);
+  ShadowControl.onChange(draw);
 
   SpeedControl = folder1.add(options, 'Speed',1,10);
   SpeedControl.onChange(draw);
@@ -234,10 +234,6 @@ var GuiConfig = function() {
 
   SizeControl = folder1.add(options, 'Size',1,40);
   SizeControl.onChange(draw);
-
-
-
-
 
   FullScreenControl = folder1.add(options, 'FullScreen');
   FullScreenControl.onChange(draw);
