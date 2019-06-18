@@ -28,10 +28,9 @@ function hexToRgb(hex) {
 
 
 function drawParticles(){
-// shadow='rgba(10,10,10,'+(1-options.Shadow)+')';
 
 var rgb = hexToRgb(options.BgColor);
-background(rgb.r,rgb.g,rgb.b,(255-options.Shadow));
+background(rgb.r,rgb.g,rgb.b,(280-options.Shadow));
 
 if(options.isPNG == true){
     clear();
